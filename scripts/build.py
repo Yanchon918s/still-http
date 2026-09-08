@@ -56,15 +56,24 @@ def build_html(sites):
 <style>
 body{{max-width:1000px;margin:40px auto;padding:0 20px;font-family:system-ui;line-height:1.6}}
 table{{width:100%;border-collapse:collapse}}th,td{{padding:8px;border-bottom:1px solid #ccc;text-align:left}}
-code{{overflow-wrap:anywhere}}nav a{{margin-right:12px}}
+code{{overflow-wrap:anywhere}}nav a{{margin-right:12px}}input{{margin:20px 0;padding:8px;width:100%;box-sizing:border-box}}
 </style>
 </head>
 <body>
 <h1>Still HTTP</h1>
 <p>HTTPのまま閲覧できるウェブサイト。{len(sites)}件。</p>
 <nav><a href="sites.csv">CSV</a><a href="sites.json">JSON</a><a href="/api">API</a></nav>
+<input id="search" type="search" placeholder="名前やURLで検索" aria-label="サイトを検索">
 <table><thead><tr><th>サイト</th><th>URL</th><th>追加日</th><th>メモ</th></tr></thead>
 <tbody>{''.join(rows)}</tbody></table>
+<script>
+const search = document.querySelector('#search');
+const rows = document.querySelectorAll('tbody tr');
+search.addEventListener('input', () => {{
+  const query = search.value.toLowerCase();
+  rows.forEach(row => row.hidden = !row.textContent.toLowerCase().includes(query));
+}});
+</script>
 </body>
 </html>
 '''
