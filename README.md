@@ -2,6 +2,8 @@
 
 HTTPのまま閲覧できるウェブサイトを集めています。
 
+https://still-http.pages.dev/
+
 サイトを追加するときは `data/sites.csv` に1行足してPull Requestを送ってください。`docs/` はビルド時に生成されるので編集不要です。
 
 ```csv
